@@ -9,6 +9,7 @@ import (
 	"path"
 	"strings"
 	"time"
+	"github.com/gin-gonic/gin"
 )
 
 type EtagFunc func(filename string, fileStat fs.FileInfo) string
@@ -91,4 +92,8 @@ func (h *EmbedSPAHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		r.URL.RawPath = strings.TrimPrefix(r.URL.RawPath, h.UrlStripPrefix)
 		h.FileServer.ServeHTTP(w, r)
 	}
+}
+
+func (h *EmbedSPAHandler) GIN(ctx *gin.Context) {
+	h.ServeHTTP(ctx.Writer, ctx.Request)
 }
