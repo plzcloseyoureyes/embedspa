@@ -16,8 +16,8 @@ import (
     "github.com/gin-gonic/gin"
 )
 //go:embed dist
-var  reactAppEmbed embed.FS
-func  main() {
+var reactAppEmbed embed.FS
+func main() {
     r  := gin.Default()
     embedFS, _  := fs.Sub(reactAppEmbed, "dist")
     spaExample  := embedspa.NewEmbedSPAHandler(embedFS).
