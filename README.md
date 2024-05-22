@@ -21,8 +21,8 @@ func  main() {
     r  := gin.Default()
     embedFS, _  := fs.Sub(reactAppEmbed, "dist")
     spaExample  := embedspa.NewEmbedSPAHandler(embedFS).
-    StripPrefixURL("").
-    SetIndexPath("index.html")
+        StripPrefixURL("").
+        SetIndexPath("index.html")
     r.GET("/*any", spaExample.GIN)
     r.Run()
 }
