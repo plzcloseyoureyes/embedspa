@@ -16,6 +16,7 @@ import (
     "github.com/gin-gonic/gin"
 )
 
+// Embedding the entire dist folder using go's embed:
 //go:embed dist
 var reactAppEmbed embed.FS
 
