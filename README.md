@@ -2,11 +2,11 @@
 # embedspa
 ##### Embed Single Page Applications like React with Go Embed, Features: Auto Index, ETag support, Strip prefix for specific paths.
 ##### Features:
-#### * Returns index.html contents for non-exist paths
-#### * ETag support for caching
-#### * Strip prefix for specific paths.
+* Returns index.html contents for unexist routes
+* ETag support for caching
+* Strip prefix for specific paths.
 
-# Gin usage
+# Gin usage example:
 ```go
 package main
 import (
@@ -25,9 +25,7 @@ func main() {
     spaExample  := embedspa.NewEmbedSPAHandler(embedFS).
         StripPrefixURL("").
         SetIndexPath("index.html")
-    r.GET("/*any", spaExample.GIN)
+    r.GET("/*any", gin.WrapF(spaExample.ServeHTTP))
     r.Run()
 }
-```
-
-## There is also a ServeHTTP handler for other framework support
+``` 
